@@ -7,7 +7,7 @@ Requisitos:
 * Autenticação de usuário
 * Cadastro e edição de dados do usuário
 * O usuário deverá conseguir criar e editar seus anúncios
-* O usuário deverá simular uma compra
+* O usuário deverá conseguir simular uma compra
 * O usuário deverá conseguir tirar dúvidas sobre o produto com o vendedor, através de mensagens
 
 # Desenvolvedores
