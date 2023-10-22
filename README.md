@@ -1,5 +1,6 @@
 # INE5646-Marketplace
-Projeto final da disciplina INE5646
+Projeto final da disciplina INE5646.
+
 O objetivo do projeto é o desenvolvimento de um marketplace.
 
 Requisitos:
