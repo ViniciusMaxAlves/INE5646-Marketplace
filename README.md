@@ -10,6 +10,17 @@ Requisitos:
 * O usuário deverá conseguir simular uma compra
 * O usuário deverá conseguir tirar dúvidas sobre o produto com o vendedor, através de mensagens
 
+Lista de telas:
+* Tela de Login
+* Tela de Cadastro de usuário
+* Tela de Editar usuário
+* Tela de criação e edição de anúncios
+* Tela de lista de anúncios do usuário
+* Tela de lista de compras do usuário
+* Tela de lista de anúncios
+* Tela de detalhamento do anúncio
+* Tela de confirmação de compra (valor, parcelamento...)
+
 # Desenvolvedores
 * Vinicius Maximiano Alves
 * Victor Seabra
