@@ -14,6 +14,15 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    location: {
+      type: String,
+      required: false,
+    },
+    phonenumber: {
+      type: Number,
+      required: false,
+      default: null,
+    },
   },
   {
     timestamps: true,

@@ -1,30 +1,28 @@
 import React from 'react'
 import axios from '../api/axios'
 import { useState } from 'react';
+import { useAuth } from '../AuthProvider/AuthContext';
 
 export const Login = () => {
   
-  const [name, setName]= useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const {login} = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     
     try {
-      const email = 'email@gmail.com';
-      setName('');
+
+      setEmail('');
       setPassword('');
       // Make a POST request to the login endpoint
-      const response = await axios.post('/auth/login', { name, email, password }, 
-      {
-        headers: {"Content-Type": 'application/json'},
-      }
-      );
+      login(email, password)
 
       window.location.href = '/';
       
     } catch (error) {
+      alert('Password Incorreta');
       console.log('errr', error);
       setErrMsg(error.response.data.message);
       alert(error.response.data.message);
@@ -36,8 +34,8 @@ export const Login = () => {
     <div>
       <form onSubmit={handleLogin}>
         <h2>Login</h2>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value={name} onChange={(e) => setName(e.target.value)} required/>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>

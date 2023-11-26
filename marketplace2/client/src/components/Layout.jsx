@@ -8,7 +8,7 @@ export default function Layout() {
   const path = location.pathname;
 
   return (
-    <div className='App background-img'>
+    <div className='App'>
       <Navbar />
       <div className={`${path === '/' ? '' : 'my-5 py-3'} content`}>
         <Outlet />
