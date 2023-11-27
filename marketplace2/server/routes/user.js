@@ -9,7 +9,7 @@ const router = express.Router();
 //register
 router.post('/register', async (request, response) => {
   try {
-
+    console.log('registo', request.body);
     if (
       !request.body.name ||
       !request.body.password ||
@@ -27,28 +27,12 @@ router.post('/register', async (request, response) => {
       email: request.body.email,
       password: passwordHash,
     };
-    const user = await User.create(newUser);
-
-    const client = new MongoClient(mongoDBurl, { useNewUrlParser: true, useUnifiedTopology: true });
-
-      try {
-
-        await client.connect(); // Conectar ao banco de dados
-
-        const database = client.db(); // Selecionar o banco de dados
-
-        // Selecionar a coleção de usuários (criará automaticamente se não existir)
-        const colecaoUsuarios = database.collection('user');
-
-        // Inserir o usuário na coleção
-        const resultadoInsercao = await colecaoUsuarios.insertOne(user);
-
-        console.log(`Usuário inserido com ID: ${resultadoInsercao.insertedId}`);
-
-      } finally {
-        await client.close(); // Fechar a conexão com o banco de dados
-      }
-
+    try {
+      await User.create(newUser);  
+    } catch (error) {
+      console.log(error.message);
+      response.status(500).send({ message: error.message });
+    }
     return response.status(201).send(user);
 
   } catch(error) {
@@ -66,7 +50,7 @@ router.post('/login', async (request, response) => {
       !request.body.email
     ) {
       return response.status(400).send({
-        message: 'Send all required fields: name, email, password',
+        message: 'Send all required fields: email, password',
       });
     }
 
@@ -180,7 +164,7 @@ router.put('/:id', async (request, response) => {
 });
 
 // Route for Delete a User
-router.delete('/:id', async (request, response) => {
+router.delete('/userProfile/:id', async (request, response) => {
   try {
     const { id } = request.params;
 

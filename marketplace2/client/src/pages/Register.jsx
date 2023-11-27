@@ -17,7 +17,7 @@ export const Register = () => {
       setEmail('');
       setPassword('');
       // Make a POST request to the register endpoint
-      register(name, email, password)
+      register(name, email, password);
 
       window.location.href = '/';
       

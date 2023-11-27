@@ -17,7 +17,7 @@ export const Login = () => {
       setEmail('');
       setPassword('');
       // Make a POST request to the login endpoint
-      login(email, password)
+      login(email, password);
 
       window.location.href = '/';
       
