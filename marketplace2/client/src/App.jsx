@@ -7,6 +7,7 @@ import Register from './pages/Register'
 import './App.css'
 import Layout from './components/Layout'
 import Products from './pages/Products'
+import RegisterProducts from './pages/RegisterProducts'
 
 
 const App = () => {
@@ -16,7 +17,8 @@ const App = () => {
           <Route path="/" element={<Home/>} />
           <Route path="/products" element={<Products/>} /> 
           <Route path="/contact" element={<Contact/>} />
-          <Route path="/register" element={<Register/>} /> 
+          <Route path="/register" element={<Register/>} />
+          <Route path="/register-products" element={<RegisterProducts/>} /> 
           <Route path="/login" element={<Login/>} />   
         </Route>
       </Routes>
