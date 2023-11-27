@@ -21,6 +21,22 @@ export const AuthProvider = ({ children }) => {
     
   };
 
+  const register = async (name, email, password) => {
+    // chamada de API
+    try {
+      const response = await axios.post('/auth/register', { name, email, password }, 
+      {
+        headers: {"Content-Type": 'application/json'},
+      }
+      );
+
+      setUser(userData);  
+    } catch (error) {
+      console.log(error)
+    }
+    
+  };
+
   const session = async () =>{
     try {
       const response = await axios.post('/auth/session', { email, password }, 
@@ -49,7 +65,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );

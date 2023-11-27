@@ -2,6 +2,8 @@ import express from 'express';
 import { User } from '../models/user.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import {mongoDBurl} from "../config.js";
+
 const router = express.Router();
 
 //register
@@ -26,6 +28,26 @@ router.post('/register', async (request, response) => {
       password: passwordHash,
     };
     const user = await User.create(newUser);
+
+    const client = new MongoClient(mongoDBurl, { useNewUrlParser: true, useUnifiedTopology: true });
+
+      try {
+
+        await client.connect(); // Conectar ao banco de dados
+
+        const database = client.db(); // Selecionar o banco de dados
+
+        // Selecionar a coleção de usuários (criará automaticamente se não existir)
+        const colecaoUsuarios = database.collection('user');
+
+        // Inserir o usuário na coleção
+        const resultadoInsercao = await colecaoUsuarios.insertOne(user);
+
+        console.log(`Usuário inserido com ID: ${resultadoInsercao.insertedId}`);
+
+      } finally {
+        await client.close(); // Fechar a conexão com o banco de dados
+      }
 
     return response.status(201).send(user);
 
