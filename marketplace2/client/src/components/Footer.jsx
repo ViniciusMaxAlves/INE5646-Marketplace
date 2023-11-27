@@ -5,8 +5,8 @@ class Footer extends React.Component {
       <footer>
         <h4> Suporte </h4>
         <address>
-        E-Mail: <a href="mailto:wenzel-pia@gmx.de"> wenzel-pia@gmx.de</a>.<br/>
-        Cellular: +351914831714<br/>
+        E-Mail: <a href="mailto:chiconico007@gmail.com">chiconico007@gmail.com</a>.<br/>
+        Celular: +351914831714<br/>
         </address> 
       </footer>
     );
