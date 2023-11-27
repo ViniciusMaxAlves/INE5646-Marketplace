@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import './App.css'
 import Layout from './components/Layout'
+import Products from './pages/Products'
 
 
 const App = () => {
@@ -12,9 +13,11 @@ const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home/>} />
+          <Route path="/products" element={<Products/>} /> 
           <Route path="/login" element={<Login/>} />   
         </Route>
       </Routes>
+      
   )
 }
 
