@@ -11,6 +11,7 @@ class Navbar extends React.Component {
         <div className='start'> 
           <a href="/">Home</a>
           <a href="/products">Products</a>
+          <a href="/register-products">Register Products</a>
           <a href="/contact">Contact</a>
         </div>
         <div className='login'>
