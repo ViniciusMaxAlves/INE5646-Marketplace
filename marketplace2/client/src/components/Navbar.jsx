@@ -11,11 +11,11 @@ class Navbar extends React.Component {
         <div className='start'> 
           <a href="/">Home</a>
           <a href="/products">Products</a>
-          <a href="#">Contact</a>
+          <a href="/contact">Contact</a>
         </div>
         <div className='login'>
           <a href="/login">Login</a>
-          <a href="#">Register</a>
+          <a href="/register">Register</a>
         </div>
       </nav>
 
