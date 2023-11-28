@@ -8,13 +8,13 @@ export const UserProfile = () => {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [location, setLocation] = useState('');
-    
-  
-    const handleProfileUpdate = async (e) => {
+
+
+    const getUserProfile = async (e) => {
       e.preventDefault();
       
       try {
-        const email = 'email@gmail.com';
+
         setEmail('');
         setPassword('');
         // Make a PUT request to the updateProfile endpoint
@@ -29,6 +29,33 @@ export const UserProfile = () => {
         
       } catch (error) {
         alert('Password Incorreta');
+        console.log('errr', error);
+        setErrMsg(error.response.data.message);
+        alert(error.response.data.message);
+      }
+    };
+    
+  
+    const handleProfileUpdate = async (e) => {
+      e.preventDefault();
+      
+      try {
+        setName('');
+        setEmail('');
+        setPassword('');
+        setLocation('');
+        setPhoneNumber('');
+        // Make a PUT request to the updateProfile endpoint
+        
+        const response = await axios.put('/auth/userProfile/:id', { email, password }, 
+        {
+          headers: {"Content-Type": 'application/json'},
+        }
+        );
+  
+        window.location.href = '//auth/userProfile/:id';
+        
+      } catch (error) {
         console.log('errr', error);
         setErrMsg(error.response.data.message);
         alert(error.response.data.message);
