@@ -2,6 +2,7 @@ import express from "express";
 import {PORT, mongoDBurl} from "./config.js";
 import mongoose from "mongoose";
 import usersRoute from './routes/user.js';
+import productsRoute from './routes/product.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser'
@@ -31,6 +32,7 @@ app.get('/', (request, response) => {
 
 app.use('/auth', usersRoute)
 
+app.use('/products', productsRoute)
 
 mongoose.connect(mongoDBurl)
     .then(()=> {
