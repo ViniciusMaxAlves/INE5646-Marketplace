@@ -8,6 +8,7 @@ import './App.css'
 import Layout from './components/Layout'
 import Products from './pages/Products'
 import RegisterProducts from './pages/RegisterProducts'
+import UserProfile from './pages/UserProfile'
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/register" element={<Register/>} />
           <Route path="/register-products" element={<RegisterProducts/>} /> 
           <Route path="/login" element={<Login/>} />   
+          <Route path="/userProfile" element={<UserProfile/>} /> 
         </Route>
       </Routes>
       

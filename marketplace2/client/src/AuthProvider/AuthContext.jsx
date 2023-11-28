@@ -14,7 +14,8 @@ export const AuthProvider = ({ children }) => {
         headers: {"Content-Type": 'application/json'},
       }
       );
-
+      auth = await response.headers
+      console.log(auth);
       setUser(userData);  
     } catch (error) {
       console.log(error)

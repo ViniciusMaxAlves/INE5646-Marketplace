@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 
 export const UserProfile = () => {
   
@@ -8,6 +9,7 @@ export const UserProfile = () => {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [location, setLocation] = useState('');
+    const [user, setUser] = useState('');
 
 
     const getUserProfile = async (e) => {
@@ -19,16 +21,16 @@ export const UserProfile = () => {
         setPassword('');
         // Make a PUT request to the updateProfile endpoint
         
-        const response = await axios.put('/auth/', { email, password }, 
+        const response = await axios.get('/session', 
         {
           headers: {"Content-Type": 'application/json'},
         }
         );
   
-        window.location.href = '/';
-        
+       setUser(response.data);
+
+       
       } catch (error) {
-        alert('Password Incorreta');
         console.log('errr', error);
         setErrMsg(error.response.data.message);
         alert(error.response.data.message);
@@ -47,13 +49,13 @@ export const UserProfile = () => {
         setPhoneNumber('');
         // Make a PUT request to the updateProfile endpoint
         
-        const response = await axios.put('/auth/userProfile/:id', { email, password }, 
+        const response = await axios.put('/auth/:id', { email, password }, 
         {
           headers: {"Content-Type": 'application/json'},
         }
         );
   
-        window.location.href = '//auth/userProfile/:id';
+        window.location.href = '/userProfile';
         
       } catch (error) {
         console.log('errr', error);
@@ -74,13 +76,13 @@ export const UserProfile = () => {
         <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value={email} onChange={(e) => setPassword(e.target.value)} />
+        <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         
         <label for="phoneNumber">Celular:</label>
-        <input type="tel" id="tel" name="phoneNumber" value={phoneNumber} onChange={(e) => setPassword(e.target.value)} />
+        <input type="tel" id="tel" name="phoneNumber" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
         
         <label for="localizacao">Localização:</label>
-        <input type="text" id="location" name="location" value={location} onChange={(e) => setPassword(e.target.value)} />
+        <input type="text" id="location" name="location" value={location} onChange={(e) => setLocation(e.target.value)} />
 
         <button type="submit">Atualizar Perfil</button>
       </form>

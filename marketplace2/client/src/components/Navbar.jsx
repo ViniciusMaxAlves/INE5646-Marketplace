@@ -9,14 +9,17 @@ class Navbar extends React.Component {
 
    <nav>
         <div className='start'> 
-          <a href="/">Home</a>
-          <a href="/products">Products</a>
-          <a href="/register-products">Register Products</a>
-          <a href="/contact">Contact</a>
+          <a href="/">Inicio</a>
+          <a href="/products">Produtos</a>
+          <a href="/register-products">Registo de Produtos</a>
+          <a href="/contact">Contacto</a>
         </div>
         <div className='login'>
           <a href="/login">Login</a>
-          <a href="/register">Register</a>
+          <a href="/register">Registo</a>
+        </div>
+        <div className='user'>
+          <a href="/userProfile">Perfil do Usuario</a>
         </div>
       </nav>
 

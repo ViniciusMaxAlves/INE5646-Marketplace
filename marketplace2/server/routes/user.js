@@ -59,23 +59,23 @@ router.post('/login', async (request, response) => {
       return response.status(404).json({ message: 'User not found' });
     }
 
-    const checkPassword = await await bcrypt.compare(request.body.password, user.password);
+    const checkPassword = await bcrypt.compare(request.body.password, user.password);
     if (!checkPassword) {
       return response.status(400).json({ message: 'Wrong password' });
+    }else{
+      try {
+        //TODO fix .env secret
+        const secret = 'bc9fe94b3387d593047eed60bb1f206c3481258b7b41da0c97f4cc95793f8c1b';
+        
+        const token = jwt.sign({id: user._id,},secret);
+        response.cookie('MKcookie', token, { httpOnly: true, maxAge: 1000*60*60*24*7, sameSite: 'lax', secure: false });
+
+        response.status(200).json({ msg: "Autenticação realizada com sucesso!", token });
+      } catch (error) {
+        response.status(500).json({ msg: error.message });
+      }
+
     }
-
-    try {
-      //TODO fix .env secret
-      const secret = 'bc9fe94b3387d593047eed60bb1f206c3481258b7b41da0c97f4cc95793f8c1b';
-      
-      const token = jwt.sign({id: user._id,},secret);
-      response.cookie('MKcookie', token, { httpOnly: true, maxAge: 1000*60*60*24*7, sameSite: 'lax', secure: false });
-
-      response.status(200).json({ msg: "Autenticação realizada com sucesso!", token });
-    } catch (error) {
-      response.status(500).json({ msg: error.message });
-    }
-
 
   } catch (error) {
     console.log(error.message);
