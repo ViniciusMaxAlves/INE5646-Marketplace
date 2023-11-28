@@ -16,10 +16,8 @@ Lista de telas:
 * Tela de Editar usuário
 * Tela de criação e edição de anúncios
 * Tela de lista de anúncios do usuário
-* Tela de lista de compras do usuário
 * Tela de lista de anúncios
 * Tela de detalhamento do anúncio
-* Tela de confirmação de compra (valor, parcelamento...)
 
 # Desenvolvedores
 * Vinicius Maximiano Alves
