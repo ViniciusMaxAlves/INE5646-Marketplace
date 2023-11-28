@@ -1,6 +1,7 @@
 import './DisplayProduct.css'
 import React from "react";
 class DisplayProduct extends React.Component {
+  // Renderiza o componente
   render() {
     var priceWhole = this.props.price.split(".")[0];
     var priceFraction = this.props.price.split(".")[1];

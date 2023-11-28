@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const Home = () => {
+    // Renderiza o componente
   return (
     <div className="App">
     <h2>Bem-vindo ao Marketplace</h2>

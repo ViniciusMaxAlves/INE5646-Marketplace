@@ -13,19 +13,34 @@ import UserProfile from './pages/UserProfile'
 
 const App = () => {
   return (
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home/>} />
-          <Route path="/products" element={<Products/>} /> 
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/register" element={<Register/>} />
-          <Route path="/register-products" element={<RegisterProducts/>} /> 
-          <Route path="/login" element={<Login/>} />   
-          <Route path="/userProfile" element={<UserProfile/>} /> 
-        </Route>
-      </Routes>
-      
-  )
-}
+    // Componente principal que define as rotas da aplicação
+    <Routes>
+      {/* Layout é um componente que pode ser usado para envolver outras rotas */}
+      <Route element={<Layout />}>
+        {/* Rota para a página inicial */}
+        <Route path="/" element={<Home />} />
+
+        {/* Rota para a página de produtos */}
+        <Route path="/products" element={<Products />} />
+
+        {/* Rota para a página de contato */}
+        <Route path="/contact" element={<Contact />} />
+
+        {/* Rota para a página de registro de usuário */}
+        <Route path="/register" element={<Register />} />
+
+        {/* Rota para a página de registro de produtos */}
+        <Route path="/register-products" element={<RegisterProducts />} />
+
+        {/* Rota para a página de login */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Rota para a página do perfil do usuário */}
+        <Route path="/userProfile" element={<UserProfile />} />
+      </Route>
+    </Routes>
+  );
+};
+
 
 export default App

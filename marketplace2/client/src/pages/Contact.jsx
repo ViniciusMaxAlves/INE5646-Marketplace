@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const Contact = () => {
+  // Renderiza o componente
   return (
     <div className="App">
     <h2>Bem-vindo ao Contact</h2>

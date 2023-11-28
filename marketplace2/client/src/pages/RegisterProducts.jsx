@@ -5,6 +5,7 @@ import DisplayProduct from '../components/DisplayProduct';
 import axios from 'axios';
 
 export const RegisterProducts = () => {
+  // Estados locais para armazenar dados do formulário
   const [file, setFile] = useState([]);
   const [fileName, setFileName] = useState("");
   const [image, setImage] = useState([]);
@@ -12,12 +13,11 @@ export const RegisterProducts = () => {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [sale, setSale] = useState(false);
-  const [exchange, setExchage] = useState(false);
+  const [exchange, setExchange] = useState(false);
   const [inputError, setInputError] = useState(null);
 
-
+  // Função para lidar com alterações no preço
   function handlePriceOnChange(event) {
-    
     setPrice(parseFloat(event.target.value));
     var value = event.target.value;
     var regex = /^(?:\d+|\d+,\d{2}|\d+\.\d{2})$/;
@@ -28,67 +28,80 @@ export const RegisterProducts = () => {
     } else {
       setInputError('Only numbers');
     }
-
   }
+
+  // Função para lidar com alterações no nome do produto
   function handleProductNameOnChange(event) {
     setProductName(event.target.value);
   }
+
+  // Função para lidar com alterações na descrição do produto
   function handleProductDescriptionOnChange(event) {
     setProductDescription(event.target.value);
   }
-  function handleSaleCheckboxOnChange(event) {
+
+  // Função para lidar com alterações na checkbox de venda
+  function handleSaleCheckboxOnChange() {
     setSale(!sale);
   }
-  function handleExchangeCheckboxOnChange(event) {
-    setExchage(!exchange);
+
+  // Função para lidar com alterações na checkbox de troca
+  function handleExchangeCheckboxOnChange() {
+    setExchange(!exchange);
   }
 
-
-
+  // Função para enviar o formulário
   async function submitForm(event) {
     event.preventDefault();
+
+    // Valida se pelo menos uma opção de disponibilidade está marcada
     if (!sale && !exchange) {
-      setInputError('Marcar se produto esta disponivel para venda e/ou troca!');
+      setInputError('Marcar se o produto está disponível para venda e/ou troca!');
     } else {
       setInputError(null);
     }
 
+    // Dados a serem enviados na chamada da API
     const data = {
       "name": productName,
       "description": productDescription,
-      "price": parseFloat(price), 
+      "price": parseFloat(price),
       sale,
       exchange,
       image
     };
-    await axios.post('http://localhost:5555/products/', {data} , {
+
+    // Chamada da API para registrar o produto
+    await axios.post('http://localhost:5555/products/', { data }, {
       headers: { "Content-Type": 'application/json' },
-    }
-    )
+    })
       .then((response) => {
         console.log(response);
-      }, (error) => {
+      })
+      .catch((error) => {
         console.log(error);
-      });;
+      });
   }
 
+  // Função para lidar com a seleção de arquivo
   function handleFileInput(event) {
     setFile(
       URL.createObjectURL(event.target.files[0])
     );
 
-    setFileName(event.target.files[0].name)
+    setFileName(event.target.files[0].name);
 
     const formData = new FormData();
-    formData.append('productImage', event.target.files[0],event.target.files[0].name);
+    formData.append('productImage', event.target.files[0], event.target.files[0].name);
     setImage(formData);
-    console.log('handleFileInput working!')
   }
 
+  // Renderiza o componente
   return (
     <div className="App">
       <h2>Bem-vindo ao Cadastro de Produtos</h2>
       <form>
+        {/* Campos do formulário */}
         <label htmlFor="productName">Nome do produto</label>
         <input id="productName" type="text" onChange={handleProductNameOnChange} />
         <label htmlFor="productDescription">Descrição</label>
@@ -105,23 +118,22 @@ export const RegisterProducts = () => {
           <label htmlFor="exchange">Troca</label>
         </div>
 
+        {/* Seletor de arquivo */}
         <div>
-          <div>
-            <div className='btn'>
-              <label htmlFor="file" className='btn-label'>Select Image</label>
-            </div>
-            <label htmlFor="file" className='btn-label'>Select Image</label>
-            <span>{fileName}</span>
-            <input id="file" hidden type="file" onChange={handleFileInput} />
-          </div>
-
-          {file && <img className='product-image' src={file} />}
+          <label htmlFor="file" className='btn-label'>Select Image</label>
+          <span>{fileName}</span>
+          <input id="file" hidden type="file" onChange={handleFileInput} />
         </div>
+        <br />
+
+        {/* Exibição da imagem selecionada */}
+        {file && <img className='product-image' src={file} />}
+
+        {/* Botão de envio do formulário */}
         <button type="submit" onClick={submitForm}>Submit</button>
       </form>
-
     </div>
-  )
+  );
 }
 
 export default RegisterProducts

@@ -6,10 +6,14 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './AuthProvider/AuthContext';
 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
-        <AuthProvider>
-            <App/>
-        </AuthProvider>
-    </BrowserRouter>
-)
+// Envolva a renderização em ReactDOM.createRoot
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Renderize o aplicativo dentro do BrowserRouter e AuthProvider
+root.render(
+  <BrowserRouter>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </BrowserRouter>
+);

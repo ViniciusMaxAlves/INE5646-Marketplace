@@ -1,5 +1,6 @@
 import React from "react";
 class Navbar extends React.Component {
+  // Renderiza o componente
   render() {
     return(
       <div className="App">
