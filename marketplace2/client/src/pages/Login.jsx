@@ -2,26 +2,42 @@ import React from 'react'
 import axios from '../api/axios'
 import { useState } from 'react';
 import { useAuth } from '../AuthProvider/AuthContext';
+import { useCookies } from "react-cookie";
+
 
 export const Login = () => {
   // Estados locais para controlar os campos do formulário
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [_, setCookies] = useCookies(["access_token"]);
+
 
   // Obtém a função de login do hook de autenticação
-  const { login } = useAuth();
+  //const { login } = useAuth();
 
   // Função chamada ao enviar o formulário de login
   const handleLogin = async (e) => {
     e.preventDefault(); // Evita o comportamento padrão de envio do formulário
 
     try {
-      setEmail(''); // Limpa o estado do e-mail
-      setPassword(''); // Limpa o estado da senha
 
       // Chama a função de login passando e-mail e senha
-      login(email, password);
-
+      //login(email, password);
+      try {
+        // Faz uma chamada de API para autenticação
+        const response = await axios.post('http://localhost:5555/auth/login', { email, password }, {
+          headers: { "Content-Type": 'application/json' },
+        });
+  
+        setCookies("access_token", response.data.token);
+        window.localStorage.setItem("userID", response.data.userID);
+        
+      } catch (error) {
+        console.log(error);
+      }
+      setEmail(''); // Limpa o estado do e-mail
+      setPassword(''); // Limpa o estado da senha
+      
       window.location.href = '/'; // Redireciona o usuário para a página inicial
 
     } catch (error) {

@@ -35,15 +35,13 @@ export const AuthProvider = ({ children }) => {
         headers: { "Content-Type": 'application/json' },
       });
 
-      // Define o usuário no estado local
-      setUser(userData);
     } catch (error) {
       console.log(error);
     }
   };
 
   // Função para verificar a sessão do usuário
-  const session = async () => {
+  const session = async (email, password) => {
     try {
       // Faz uma chamada de API para obter informações da sessão
       const response = await axios.post('/auth/session', { email, password }, {

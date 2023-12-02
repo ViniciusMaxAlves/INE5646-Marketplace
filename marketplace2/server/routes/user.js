@@ -42,7 +42,7 @@ router.post('/register', async (request, response) => {
       await User.create(newUser);
 
       // Retorna uma resposta de sucesso com o usuário criado
-      return response.status(201).send(user);
+      return response.status(200);
     } catch (error) {
       // Captura erros relacionados à criação do usuário e envia uma resposta de erro
       console.log(error.message);
@@ -87,10 +87,9 @@ router.post('/login', async (request, response) => {
 
         // Gera um token JWT e o adiciona como cookie na resposta
         const token = jwt.sign({ id: user._id }, secret);
-        response.cookie('MKcookie', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7, sameSite: 'lax', secure: false });
 
         // Retorna uma resposta de sucesso com o token
-        response.status(200).json({ msg: "Autenticação realizada com sucesso!", token });
+        response.status(200).json({ msg: "Autenticação realizada com sucesso!", token, userID: user._id });
       } catch (error) {
         // Retorna uma resposta de erro se houver um problema na geração do token
         response.status(500).json({ msg: error.message });
@@ -195,7 +194,7 @@ router.put('/:id', async (request, response) => {
 });
 
 // Rota DELETE para excluir um usuário pelo ID
-router.delete('/userProfile/:id', async (request, response) => {
+router.delete('/:id', async (request, response) => {
   try {
     // Obtém o ID do parâmetro da rota
     const { id } = request.params;

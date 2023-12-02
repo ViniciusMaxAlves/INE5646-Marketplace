@@ -3,7 +3,7 @@ import {Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Contact from './pages/Contact'
-import Register from './pages/Register'
+import Auth from './pages/Auth'
 import './App.css'
 import Layout from './components/Layout'
 import Products from './pages/Products'
@@ -27,13 +27,10 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
 
         {/* Rota para a página de registro de usuário */}
-        <Route path="/register" element={<Register />} />
+        <Route path="/auth" element={<Auth />} />
 
         {/* Rota para a página de registro de produtos */}
         <Route path="/register-products" element={<RegisterProducts />} />
-
-        {/* Rota para a página de login */}
-        <Route path="/login" element={<Login />} />
 
         {/* Rota para a página do perfil do usuário */}
         <Route path="/userProfile" element={<UserProfile />} />
